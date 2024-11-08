@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Paciente - Ecografía 4D</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="patient-panel-page">
+    <header>
+        <div class="header-content">
+            <h1><i class="fas fa-baby"></i> Ecografía 4D</h1>
+            <nav>
+                <ul>
+                    <li><a href="inicio.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="dashboard-section">
+            <h2>Bienvenido(a), <span id="nombrePaciente">Nombre del Paciente</span></h2>
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Próxima Cita</h3>
+                    <p id="proximaCita">15 de Mayo, 2024</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-image"></i>
+                    <h3>Última Ecografía</h3>
+                    <p id="ultimaEcografia">3 de Abril, 2024</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Semanas de Embarazo</h3>
+                    <p id="semanasEmbarazo">28 semanas</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="citas" class="dashboard-section">
+            <h2>Mis Citas</h2>
+            <div class="appointment-list">
+                <!-- Las citas se cargarán dinámicamente aquí -->
+            </div>
+            <button class="btn-primary" id="nuevaCitaBtn">Solicitar Nueva Cita</button>
+        </section>
+
+        <section id="ecografias" class="dashboard-section">
+            <h2>Mis Ecografías</h2>
+            <div class="ecografia-gallery">
+                <!-- Las ecografías se cargarán dinámicamente aquí -->
+            </div>
+        </section>
+
+        <section id="perfil" class="dashboard-section">
+            <h2>Mi Perfil</h2>
+            <form id="perfilForm" class="profile-form">
+                <!-- Los campos del perfil se cargarán dinámicamente aquí -->
+            </form>
+            <button class="btn-primary" id="actualizarPerfilBtn">Actualizar Perfil</button>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Sistema de Gestión de Información Médica para Ecografía 4D. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="patient-panel-script.js"></script>
+</body>
+</html>
