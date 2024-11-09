@@ -18,7 +18,6 @@ document.getElementById('formularioRegistro').addEventListener('submit', async (
 
         if (response.ok) {
             alert('Doctor registrado con éxito');
-            // Redirigir o limpiar el formulario
         } else {
             const errorMsg = await response.text();
             alert('Error: ' + errorMsg);

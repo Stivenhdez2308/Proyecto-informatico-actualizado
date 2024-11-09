@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Función para el inicio de sesión (si lo necesitas en el futuro)
+    // Función para el inicio de sesión
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', function(e) {
@@ -68,42 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
             iniciarSesion(email, password);
         });
     }
-
-    // Cargar opciones de nacionalidad
-    const nacionalidadSelect = document.getElementById('nacionalidad');
-    const nacionalidadInput = document.getElementById('nacionalidadInput');
-    const paises = ['Argentina', 'Brasil', 'Chile', 'Colombia', 'México', 'Perú', 'España', 'Francia', 'Alemania', 'Italia', 'Reino Unido', 'Estados Unidos', 'Canadá', 'Australia', 'Japón', 'China', 'India', 'Sudáfrica']; // Agrega más países según sea necesario
-
-    paises.forEach(pais => {
-        const option = document.createElement('option');
-        option.value = pais;
-        option.textContent = pais;
-        nacionalidadSelect.appendChild(option);
-    });
-
-    // Mostrar el campo de búsqueda al hacer clic en el selector
-    nacionalidadSelect.addEventListener('click', function() {
-        nacionalidadInput.style.display = 'block'; // Muestra el campo de búsqueda
-        nacionalidadInput.focus(); // Enfoca el campo de búsqueda
-    });
-
-    // Filtrar países
-    window.filtrarPaises = function() {
-        const filter = nacionalidadInput.value.toLowerCase();
-        const options = nacionalidadSelect.options;
-
-        for (let i = 1; i < options.length; i++) { // Comenzar desde 1 para omitir la opción "Seleccione su país"
-            const option = options[i];
-            const text = option.textContent.toLowerCase();
-            option.style.display = text.includes(filter) ? '' : 'none';
-        }
-    };
-
-    // Ocultar el campo de búsqueda al seleccionar un país
-    nacionalidadSelect.addEventListener('change', function() {
-        nacionalidadInput.style.display = 'none'; // Oculta el campo de búsqueda
-        nacionalidadInput.value = ''; // Limpia el campo de búsqueda
-    });
 
     // Ocultar el campo de búsqueda si se hace clic fuera de él
     document.addEventListener('click', function(e) {
@@ -127,7 +91,7 @@ async function registrarDoctor(nombre, email, password) {
         const data = await response.json();
         if (response.ok) {
             alert('Registro exitoso.');
-            // Puedes redirigir a otra página o limpiar el formulario aquí
+            
         } else {
             alert(data.msg || 'Error en el registro');
         }
@@ -139,7 +103,7 @@ async function registrarDoctor(nombre, email, password) {
 
 // Función para iniciar sesión (si la necesitas en el futuro)
 async function iniciarSesion(email, password) {
-    // Implementa la lógica de inicio de sesión aquí si es necesario
+    
 }
 
 async function verificarCodigoAutorizacion(codigo) {
@@ -232,8 +196,6 @@ if (registroPacienteForm) {
 }
 
 function accederCita(citaId) {
-    // Lógica para acceder a la cita
-    // Mostrar un formulario para adjuntar imágenes y videos
     const form = `
         <form id="adjuntarForm">
             <h3>Adjuntar Archivos para la Cita ${citaId}</h3>
@@ -252,7 +214,7 @@ function accederCita(citaId) {
             <button type="submit" class="btn-primary">Guardar</button>
         </form>
     `;
-    document.getElementById('modalContent').innerHTML = form; // Suponiendo que tienes un modal para mostrar el formulario
+    document.getElementById('modalContent').innerHTML = form;
     document.getElementById('adjuntarForm').addEventListener('submit', (e) => {
         e.preventDefault();
         guardarArchivos(citaId);
@@ -264,8 +226,6 @@ async function guardarArchivos(citaId) {
     const imagenes = document.getElementById('imagenes').files;
     const video = document.getElementById('video').files[0];
 
-    // Lógica para subir archivos y guardar en la base de datos
-    // Aquí deberías usar FormData para enviar los archivos al servidor
 }
 
 async function marcarNoRealizada(citaId) {
@@ -275,7 +235,6 @@ async function marcarNoRealizada(citaId) {
 
     if (response.ok) {
         alert('Cita marcada como no realizada.');
-        // Actualizar la interfaz de usuario según sea necesario
     } else {
         alert('Error al marcar la cita.');
     }

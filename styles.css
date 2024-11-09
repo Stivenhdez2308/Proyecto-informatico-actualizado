@@ -1214,8 +1214,6 @@ footer {
     font-size: 1.1rem;
 }
 
-/* Asegúrate de que los demás estilos para el formulario sean consistentes con los de registro-doctor */
-
 /* Estilos para la página de acceso de doctores */
 .doctor-login-page {
     background: linear-gradient(135deg, #3498db, #8e44ad);
@@ -1578,9 +1576,9 @@ footer {
 }
 
 .form-section h2 {
-    text-align: center; /* Centra el texto del encabezado */
-    color: #3498db; /* Asegúrate de que el color sea el deseado */
-    font-size: 1.5rem; /* Ajusta el tamaño de fuente si es necesario */
+    text-align: center;
+    color: #3498db;
+    font-size: 1.5rem;
     margin-bottom: 1.5rem; /* Espaciado inferior */
     border-bottom: 2px solid #3498db; /* Línea inferior para destacar */
     padding-bottom: 0.5rem; /* Espaciado inferior de la línea */
@@ -1964,7 +1962,7 @@ footer {
 @media (max-width: 768px) {
     .patient-panel-page main {
         padding: 1rem;
-        margin-top: 60px; /* Ajusta este valor según la altura de tu header en móviles */
+        margin-top: 60px;
     }
 
     .dashboard-stats {
@@ -2039,7 +2037,7 @@ footer {
 }
 
 .diagnostico-card h3 {
-    font-size: 1.5rem; /* Aumentar tamaño del título */
+    font-size: 1.5rem;
     color: #3498db; /* Color del título */
     margin-bottom: 0.5rem; /* Espacio inferior */
 }
