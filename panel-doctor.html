@@ -14,11 +14,7 @@
             <h1><i class="fas fa-baby"></i> Ecografía 4D</h1>
             <nav>
                 <ul>
-                    <li><a href="#dashboard">Dashboard</a></li>
-                    <li><a href="#pacientes">Pacientes</a></li>
-                    <li><a href="#ecografias">Ecografías</a></li>
-                    <li><a href="#agenda">Agenda</a></li>
-                    <li><a href="Inicio.html">Cerrar Sesión</a></li>
+                    <li><a href="inicio.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
                 </ul>
             </nav>
         </div>
@@ -76,43 +72,22 @@
             </table>
         </section>
 
-        <section id="ecografias" class="ecografias">
-            <h2>Subir Ecografía</h2>
-            <form class="upload-form">
-                <div class="form-group">
-                    <label for="paciente">Paciente:</label>
-                    <select id="paciente" name="paciente" required>
-                        <option value="">Seleccionar paciente</option>
-                        <option value="1">María González</option>
-                        <option value="2">Ana Martínez</option>
-                        <!-- Más opciones que le podemos añadir irían aquí -->
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="fecha">Fecha de la Ecografía:</label>
-                    <input type="date" id="fecha" name="fecha" required>
-                </div>
-                <div class="form-group">
-                    <label for="semanas">Semanas de Gestación:</label>
-                    <input type="number" id="semanas" name="semanas" min="1" max="42" required>
-                </div>
-                <div class="form-group">
-                    <label for="archivos">Archivos de Ecografía:</label>
-                    <input type="file" id="archivos" name="archivos" multiple accept="image/*,video/*" required>
-                </div>
-                <div class="form-group">
-                    <label for="notas">Notas:</label>
-                    <textarea id="notas" name="notas" rows="4"></textarea>
-                </div>
-                <button type="submit" class="btn-primary">Subir Ecografía</button>
-            </form>
-        </section>
-
         <section id="agenda" class="agenda">
             <h2>Agenda de Citas</h2>
             <div class="calendar">
                 <!-- Aquí iría un componente de calendario que se puede hacer con el google calendar-->
                 <p>Componente de calendario para gestionar citas</p>
+            </div>
+            <div class="appointment-list">
+                <!-- Aquí se cargarán las citas del día -->
+                <div class="appointment-card" id="cita-1">
+                    <h3>Paciente: María González</h3>
+                    <p>Fecha: 15 de Mayo, 2024</p>
+                    <p>Hora: 10:00 AM</p>
+                    <button class="btn-primary" onclick="accederCita(1)">Acceder a Cita</button>
+                    <button class="btn-secondary marcar-no-realizada" onclick="marcarNoRealizada(1)">Marcar como No Realizada</button>
+                </div>
+                <!-- Más citas se cargarán dinámicamente aquí -->
             </div>
         </section>
     </main>

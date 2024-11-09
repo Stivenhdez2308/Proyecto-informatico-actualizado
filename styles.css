@@ -1661,7 +1661,7 @@ footer {
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 1rem;
+    margin-right: 1rem;
 }
 
 .btn-primary:hover {
@@ -1757,6 +1757,7 @@ footer {
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 1rem;
 }
 
 .btn-primary:hover {
@@ -1948,6 +1949,7 @@ footer {
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-right: 1rem;
 }
 
 .btn-primary:hover {
@@ -2016,3 +2018,70 @@ footer {
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Estilos para el historial médico */
+.historial-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Espacio entre los diagnósticos */
+}
+
+.diagnostico-card {
+    background-color: #ffffff; /* Fondo blanco para los diagnósticos */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+    padding: 2rem; /* Espaciado interno aumentado */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efecto de hover */
+}
+
+.diagnostico-card:hover {
+    transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al hacer hover */
+}
+
+.diagnostico-card h3 {
+    font-size: 1.5rem; /* Aumentar tamaño del título */
+    color: #3498db; /* Color del título */
+    margin-bottom: 0.5rem; /* Espacio inferior */
+}
+
+.diagnostico-card p {
+    font-size: 1rem; /* Tamaño de fuente del texto */
+    color: #34495e; /* Color del texto */
+    margin: 0.5rem 0; /* Espacio superior e inferior */
+}
+
+.btn-primary {
+    background-color: #3498db; /* Color del botón */
+    color: white; /* Color del texto del botón */
+    padding: 0.75rem 1.5rem; /* Espaciado interno del botón */
+    border: none; /* Sin borde */
+    border-radius: 6px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transición suave */
+    margin-right: 1rem; /* Agregar margen derecho para separar los botones */
+}
+
+.btn-primary:hover {
+    background-color: #2980b9; /* Color del botón al pasar el mouse */
+    transform: translateY(-2px); /* Efecto de elevación al pasar el mouse */
+}
+
+/* Estilos para el botón "Marcar como No Realizada" */
+.btn-secondary {
+    background-color: #e74c3c; /* Color rojo para indicar una acción negativa */
+    color: white; /* Color del texto */
+    padding: 0.75rem 1.5rem; /* Espaciado interno del botón */
+    border: none; /* Sin borde */
+    border-radius: 6px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transición suave */
+}
+
+.btn-secondary:hover {
+    background-color: #c0392b; /* Color más oscuro al pasar el mouse */
+    transform: translateY(-2px); /* Efecto de elevación al pasar el mouse */
+}
+
+.btn-secondary:active {
+    transform: translateY(0); /* Efecto de retorno al hacer clic */
+}

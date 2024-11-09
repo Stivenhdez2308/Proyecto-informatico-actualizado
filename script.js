@@ -230,3 +230,73 @@ if (registroPacienteForm) {
         registrarPaciente(datosRegistro);
     });
 }
+
+function accederCita(citaId) {
+    // Lógica para acceder a la cita
+    // Mostrar un formulario para adjuntar imágenes y videos
+    const form = `
+        <form id="adjuntarForm">
+            <h3>Adjuntar Archivos para la Cita ${citaId}</h3>
+            <div class="form-group">
+                <label for="diagnostico">Diagnóstico</label>
+                <textarea id="diagnostico" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="imagenes">Imágenes Radiológicas (subir múltiples)</label>
+                <input type="file" id="imagenes" multiple accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="video">Video de Ecografía (AVI)</label>
+                <input type="file" id="video" accept="video/avi">
+            </div>
+            <button type="submit" class="btn-primary">Guardar</button>
+        </form>
+    `;
+    document.getElementById('modalContent').innerHTML = form; // Suponiendo que tienes un modal para mostrar el formulario
+    document.getElementById('adjuntarForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        guardarArchivos(citaId);
+    });
+}
+
+async function guardarArchivos(citaId) {
+    const diagnostico = document.getElementById('diagnostico').value;
+    const imagenes = document.getElementById('imagenes').files;
+    const video = document.getElementById('video').files[0];
+
+    // Lógica para subir archivos y guardar en la base de datos
+    // Aquí deberías usar FormData para enviar los archivos al servidor
+}
+
+async function marcarNoRealizada(citaId) {
+    const response = await fetch(`/api/citas/${citaId}/no-realizada`, {
+        method: 'PATCH',
+    });
+
+    if (response.ok) {
+        alert('Cita marcada como no realizada.');
+        // Actualizar la interfaz de usuario según sea necesario
+    } else {
+        alert('Error al marcar la cita.');
+    }
+}
+
+async function cargarCitasDelDia() {
+    const response = await fetch('/api/citas/dia');
+    const citas = await response.json();
+    const listaCitas = document.querySelector('.appointment-list');
+    listaCitas.innerHTML = ''; // Limpiar la lista
+
+    citas.forEach(cita => {
+        const citaCard = document.createElement('div');
+        citaCard.className = 'appointment-card';
+        citaCard.innerHTML = `
+            <h3>Paciente: ${cita.pacienteNombre}</h3>
+            <p>Fecha: ${new Date(cita.fecha).toLocaleDateString()}</p>
+            <p>Hora: ${new Date(cita.fecha).toLocaleTimeString()}</p>
+            <button class="btn-primary" onclick="accederCita(${cita.id})">Acceder a Cita</button>
+            <button class="btn-secondary" onclick="marcarNoRealizada(${cita.id})">Marcar como No Realizada</button>
+        `;
+        listaCitas.appendChild(citaCard);
+    });
+}

@@ -50,10 +50,23 @@
             <button class="btn-primary" id="nuevaCitaBtn">Solicitar Nueva Cita</button>
         </section>
 
-        <section id="ecografias" class="dashboard-section">
-            <h2>Mis Ecografías</h2>
-            <div class="ecografia-gallery">
-                <!-- Las ecografías se cargarán dinámicamente aquí -->
+        <section id="historial-medico" class="dashboard-section">
+            <h2>Historial Médico</h2>
+            <div class="historial-list">
+                <div class="diagnostico-card">
+                    <h3>10 de Enero, 2024</h3>
+                    <p><strong>Diagnóstico:</strong> Ecografía de Control</p>
+                    <p><strong>Tipo de Ecografía:</strong> Ecografía 4D</p>
+                    <p><strong>Descripción:</strong> Ecografía del feto en desarrollo.</p>
+                    <button class="btn-primary solicitarDiagnosticoBtn" data-archivo="public/video-4D.mp4">Solicitar Diagnóstico</button>
+                </div>
+                <div class="diagnostico-card">
+                    <h3>5 de Febrero, 2024</h3>
+                    <p><strong>Diagnóstico:</strong> Ecografía de Control</p>
+                    <p><strong>Tipo de Ecografía:</strong> Ecografía 4D</p>
+                    <p><strong>Descripción:</strong> Control del desarrollo fetal.</p>
+                    <button class="btn-primary solicitarDiagnosticoBtn" data-archivo="public/Val.png">Solicitar Diagnóstico</button>
+                </div>
             </div>
         </section>
 
@@ -61,6 +74,22 @@
             <h2>Mi Perfil</h2>
             <form id="perfilForm" class="profile-form">
                 <!-- Los campos del perfil se cargarán dinámicamente aquí -->
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" value="María García">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="maria@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" id="telefono" name="telefono" value="123-456-7890">
+                </div>
+                <div class="form-group">
+                    <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                    <input type="date" id="fechaNacimiento" name="fechaNacimiento" value="1990-05-15">
+                </div>
             </form>
             <button class="btn-primary" id="actualizarPerfilBtn">Actualizar Perfil</button>
         </section>

@@ -11,9 +11,40 @@ document.addEventListener('DOMContentLoaded', function() {
     // Cargar perfil
     cargarPerfil();
 
-    // Event listeners
-    document.getElementById('nuevaCitaBtn').addEventListener('click', solicitarNuevaCita);
-    document.getElementById('actualizarPerfilBtn').addEventListener('click', actualizarPerfil);
+    // Cargar historial médico
+    cargarHistorialMedico();
+
+    // Event listeners para los botones de solicitar diagnóstico
+    document.querySelectorAll('.solicitarDiagnosticoBtn').forEach(button => {
+        button.addEventListener('click', async () => {
+            const email = prompt("Por favor, ingresa tu correo electrónico para recibir el diagnóstico:");
+            if (email) {
+                const archivo = button.getAttribute('data-archivo'); // Obtener el archivo del botón
+
+                try {
+                    const response = await fetch('/api/enviar-diagnostico', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ email, archivo }),
+                    });
+
+                    const data = await response.json();
+                    if (response.ok) {
+                        alert('Diagnóstico enviado exitosamente a ' + email);
+                    } else {
+                        alert(data.msg || 'Error al enviar el diagnóstico');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Error al enviar el diagnóstico: ' + error.message);
+                }
+            } else {
+                alert('Por favor, ingresa un correo electrónico válido.');
+            }
+        });
+    });
 });
 
 function cargarDatosPaciente() {
@@ -87,6 +118,27 @@ function cargarPerfil() {
         `;
         perfilForm.appendChild(formGroup);
     }
+}
+
+function cargarHistorialMedico() {
+    // Aquí se cargarían los diagnósticos desde el servidor
+    // Por ahora, usaremos datos de ejemplo
+    const diagnosticos = [
+        { fecha: '10 de Enero, 2024', descripcion: 'Diagnóstico de Diabetes', archivo: 'diabetes_video.mp4' },
+        { fecha: '5 de Febrero, 2024', descripcion: 'Ecografía de Control', archivo: 'ecografia_control.jpg' }
+    ];
+
+    const historialList = document.querySelector('.historial-list');
+    diagnosticos.forEach(diagnostico => {
+        const diagnosticoCard = document.createElement('div');
+        diagnosticoCard.className = 'diagnostico-card';
+        diagnosticoCard.innerHTML = `
+            <h3>${diagnostico.fecha}</h3>
+            <p>${diagnostico.descripcion}</p>
+            <a href="${diagnostico.archivo}" download class="btn-primary">Descargar</a>
+        `;
+        historialList.appendChild(diagnosticoCard);
+    });
 }
 
 function solicitarNuevaCita() {
