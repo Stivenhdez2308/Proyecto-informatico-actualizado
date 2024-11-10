@@ -2083,3 +2083,83 @@ footer {
 .btn-secondary:active {
     transform: translateY(0); /* Efecto de retorno al hacer clic */
 }
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    header {
+        padding: 0.5rem 0; /* Reducir el padding en pantallas pequeñas */
+    }
+
+    .header-content {
+        flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
+        align-items: flex-start; /* Alinear a la izquierda */
+    }
+
+    h1 {
+        font-size: 1.5rem; /* Ajustar tamaño de fuente del encabezado */
+        margin: 0; /* Eliminar margen */
+    }
+
+    nav ul {
+        flex-direction: column; /* Cambiar a columna en el menú de navegación */
+        margin-top: 0.5rem; /* Espacio entre el título y el menú */
+    }
+
+    nav ul li {
+        margin-left: 0; /* Eliminar margen izquierdo */
+        margin-bottom: 0.5rem; /* Espacio entre los elementos del menú */
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem; /* Ajustar aún más el tamaño de fuente */
+    }
+
+    .header-content {
+        padding: 0 1rem; /* Reducir el padding lateral */
+    }
+}
+
+/* Estilos para el menú desplegable */
+.dropdown-content {
+    display: none; /* Ocultar por defecto */
+    position: absolute; /* Posicionar el menú desplegable */
+    background-color: white; /* Fondo blanco para el menú */
+    min-width: 160px; /* Ancho mínimo del menú */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Sombra para el menú */
+    z-index: 1000; /* Asegurarse de que esté por encima de otros elementos */
+    border-radius: 6px; /* Bordes redondeados */
+    transition: opacity 0.3s ease; /* Transición suave */
+    opacity: 0; /* Inicialmente invisible */
+}
+
+/* Mostrar el menú desplegable al hacer hover */
+.dropdown:hover .dropdown-content {
+    display: block; /* Mostrar el menú */
+    opacity: 1; /* Hacerlo visible */
+}
+
+/* Estilos para los elementos del menú desplegable */
+.dropdown-content a {
+    color: #34495e; /* Color del texto */
+    padding: 0.8rem 1rem; /* Espaciado interno */
+    text-decoration: none; /* Sin subrayado */
+    display: block; /* Hacer que cada enlace ocupe toda la línea */
+}
+
+/* Cambiar el color del texto al pasar el mouse */
+.dropdown-content a:hover {
+    background-color: #f0f4f8; /* Color de fondo al pasar el mouse */
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .dropdown-content {
+        position: absolute; /* Mantener la posición absoluta */
+        width: auto; /* Ajustar el ancho automáticamente */
+        left: 0; /* Alinear a la izquierda */
+        right: 0; /* Alinear a la derecha */
+    }
+}
