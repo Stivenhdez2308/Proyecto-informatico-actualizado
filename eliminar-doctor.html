@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Doctor - Ecografía 4D</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-dashboard-page">
+    <div class="page-wrapper">
+        <header>
+            <div class="header-content">
+                <h1><i class="fas fa-user-times"></i> Eliminar Doctor</h1>
+                <nav>
+                    <ul>
+                        <li><a href="admin-dashboard.html"><i class="fas fa-tachometer-alt"></i> Panel de Administración</a></li>
+                        <li><a href="inicio.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <div class="admin-dashboard-container">
+                <h2>Eliminar Doctor</h2>
+                <form id="eliminarDoctorForm">
+                    <div class="form-group">
+                        <label for="doctorId">ID del Doctor:</label>
+                        <input type="text" id="doctorId" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Eliminar Doctor</button>
+                </form>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2024 Sistema de Gestión de Información Médica para Ecografía 4D. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

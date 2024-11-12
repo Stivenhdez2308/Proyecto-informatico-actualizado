@@ -74,8 +74,6 @@ function cargarCitas() {
 }
 
 function cargarPerfil() {
-    // Aquí se cargarían los datos del perfil desde el servidor
-    // Por ahora, usaremos datos de ejemplo
     const perfil = {
         nombre: 'María García',
         email: 'maria@example.com',

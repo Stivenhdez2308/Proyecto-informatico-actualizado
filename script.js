@@ -65,16 +65,75 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            iniciarSesion(email, password);
+
+            window.location.href = 'admin-dashboard.html';
         });
     }
 
-    // Ocultar el campo de búsqueda si se hace clic fuera de él
-    document.addEventListener('click', function(e) {
-        if (!nacionalidadSelect.contains(e.target) && !nacionalidadInput.contains(e.target)) {
-            nacionalidadInput.style.display = 'none'; // Oculta el campo de búsqueda
-        }
-    });
+    const pacienteNombre = localStorage.getItem('pacienteNombre');
+    if (pacienteNombre) {
+        document.getElementById('pacienteNombre').value = pacienteNombre; // Cargar el nombre del paciente
+    }
+
+    // Función para editar doctor
+    const editarDoctorForm = document.getElementById('editarDoctorForm');
+    if (editarDoctorForm) {
+        editarDoctorForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const especialidad = document.getElementById('especialidad').value;
+
+            //lógica para enviar los datos al servidor
+            console.log('Datos del doctor a editar:', { nombre, email, especialidad });
+            alert('Doctor editado exitosamente.');
+        });
+    }
+
+    // Función para eliminar doctor
+    const eliminarDoctorForm = document.getElementById('eliminarDoctorForm');
+    if (eliminarDoctorForm) {
+        eliminarDoctorForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const doctorId = document.getElementById('doctorId').value;
+
+            //lógica para eliminar el doctor
+            console.log('ID del doctor a eliminar:', doctorId);
+            alert('Doctor eliminado exitosamente.');
+        });
+    }
+
+    // Evento para el formulario de importación de Excel
+    const importExcelForm = document.getElementById('importExcelForm');
+    if (importExcelForm) {
+        importExcelForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const excelFile = document.getElementById('excelFile').files[0];
+            const collection = document.getElementById('collectionSelect').value;
+
+            const formData = new FormData();
+            formData.append('file', excelFile);
+            formData.append('collection', collection);
+
+            try {
+                const response = await fetch('/api/importar-excel', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert(data.msg || 'Datos importados exitosamente.');
+                } else {
+                    alert(data.msg || 'Error al importar los datos.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al importar los datos: ' + error.message);
+            }
+        });
+    }
 });
 
 // Función para registrar un nuevo doctor
@@ -101,7 +160,6 @@ async function registrarDoctor(nombre, email, password) {
     }
 }
 
-// Función para iniciar sesión (si la necesitas en el futuro)
 async function iniciarSesion(email, password) {
     
 }
@@ -195,30 +253,9 @@ if (registroPacienteForm) {
     });
 }
 
-function accederCita(citaId) {
-    const form = `
-        <form id="adjuntarForm">
-            <h3>Adjuntar Archivos para la Cita ${citaId}</h3>
-            <div class="form-group">
-                <label for="diagnostico">Diagnóstico</label>
-                <textarea id="diagnostico" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="imagenes">Imágenes Radiológicas (subir múltiples)</label>
-                <input type="file" id="imagenes" multiple accept="image/*">
-            </div>
-            <div class="form-group">
-                <label for="video">Video de Ecografía (AVI)</label>
-                <input type="file" id="video" accept="video/avi">
-            </div>
-            <button type="submit" class="btn-primary">Guardar</button>
-        </form>
-    `;
-    document.getElementById('modalContent').innerHTML = form;
-    document.getElementById('adjuntarForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        guardarArchivos(citaId);
-    });
+function accederCita(citaId, pacienteNombre) {
+    localStorage.setItem('pacienteNombre', pacienteNombre);
+    window.location.href = 'diagnosticos.html';
 }
 
 async function guardarArchivos(citaId) {
@@ -244,7 +281,7 @@ async function cargarCitasDelDia() {
     const response = await fetch('/api/citas/dia');
     const citas = await response.json();
     const listaCitas = document.querySelector('.appointment-list');
-    listaCitas.innerHTML = ''; // Limpiar la lista
+    listaCitas.innerHTML = '';
 
     citas.forEach(cita => {
         const citaCard = document.createElement('div');
@@ -253,9 +290,10 @@ async function cargarCitasDelDia() {
             <h3>Paciente: ${cita.pacienteNombre}</h3>
             <p>Fecha: ${new Date(cita.fecha).toLocaleDateString()}</p>
             <p>Hora: ${new Date(cita.fecha).toLocaleTimeString()}</p>
-            <button class="btn-primary" onclick="accederCita(${cita.id})">Acceder a Cita</button>
+            <button class="btn-primary" onclick="accederCita(${cita.id}, '${cita.pacienteNombre}')">Acceder a Cita</button>
             <button class="btn-secondary" onclick="marcarNoRealizada(${cita.id})">Marcar como No Realizada</button>
         `;
         listaCitas.appendChild(citaCard);
     });
 }
+
