@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const pacienteNombre = localStorage.getItem('pacienteNombre');
     if (pacienteNombre) {
-        document.getElementById('pacienteNombre').value = pacienteNombre; // Cargar el nombre del paciente
+        document.getElementById('pacienteNombre').value = pacienteNombre;
     }
 
     // Función para editar doctor
@@ -134,6 +134,34 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    document.getElementById('resetPasswordForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const cedula = document.getElementById('cedula').value;
+        const asunto = document.getElementById('asunto').value;
+
+        try {
+            const response = await fetch('/api/restablecer-contraseña', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ cedula, asunto })
+            });
+
+            if (response.ok) {
+                alert('Se ha enviado un correo electrónico para restablecer su contraseña.');
+                window.location.href = 'acceso-doctor.html';
+            } else {
+                const errorMsg = await response.text();
+                alert('Error: ' + errorMsg);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error en el servidor');
+        }
+    });
 });
 
 // Función para registrar un nuevo doctor

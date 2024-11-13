@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso para Doctores - Ecografía 4D</title>
+    <title>Restablecimiento de Contraseña - Ecografía 4D</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="doctor-login-page">
+<body class="reset-password-page">
     <header>
         <div class="header-content">
             <h1><i class="fas fa-baby"></i> Ecografía 4D</h1>
             <nav>
                 <ul>
-                    <li><a href="Inicio.html">Inicio</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropbtn">Acceso <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-content">
@@ -28,32 +26,22 @@
         </div>
     </header>
 
-    <main>
-        <div class="doctor-login-container">
-            <div class="doctor-login-content">
-                <div class="doctor-login-header">
-                    <i class="fas fa-user-md"></i>
-                    <h2>Acceso para Doctores</h2>
-                </div>
-                <div class="doctor-login-image">
-                    <img src="public/image.jpg" alt="Doctor realizando ecografía">
-                </div>
-                <form id="doctorLoginForm" class="doctor-login-form">
+    <main class="contact-main">
+        <div class="contact-container">
+            <h1>Restablecimiento de Contraseña</h1>
+            <p class="contact-intro">Por favor, ingrese su cédula para restablecer su contraseña.</p>
+            <div class="contact-content">
+                <form id="resetPasswordForm" class="contact-form" action="https://formspree.io/f/mjkvvqpg" method="POST">
                     <div class="form-group">
-                        <label for="usuario"><i class="fas fa-id-card"></i> Cédula</label>
-                        <input type="text" id="usuario" name="usuario" required>
+                        <input type="text" id="cedula" name="cedula" required placeholder=" ">
+                        <label for="cedula">Cédula</label>
                     </div>
                     <div class="form-group">
-                        <label for="password"><i class="fas fa-lock"></i> Contraseña</label>
-                        <input type="password" id="password" name="password" required>
+                        <input type="text" id="asunto" name="asunto" value="Restablecimiento de contraseña" readonly placeholder=" ">
+                        <label for="asunto">Asunto</label>
                     </div>
-                    <button type="submit" class="btn-primary">
-                        <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
-                    </button>
+                    <button type="submit" class="btn-submit">Enviar Mensaje</button>
                 </form>
-                <div class="doctor-login-footer">
-                    <a href="restablecer-contraseña.html" class="forgot-password">¿Olvidó su contraseña?</a>
-                </div>
             </div>
         </div>
     </main>
@@ -69,6 +57,6 @@
         </div>
     </footer>
 
-    <script src="doctor-script.js"></script>
+    <script src="script.js"></script>
 </body>
-</html>
+</html> 

@@ -2349,3 +2349,31 @@ footer {
     outline: none;
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
+
+.reset-password-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.reset-password-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 1rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
