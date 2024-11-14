@@ -31,7 +31,7 @@
             <h1>Restablecimiento de Contraseña</h1>
             <p class="contact-intro">Por favor, ingrese su cédula para restablecer su contraseña.</p>
             <div class="contact-content">
-                <form id="resetPasswordForm" class="contact-form" action="https://formspree.io/f/mjkvvqpg" method="POST">
+                <form id="resetPasswordForm" class="contact-form">
                     <div class="form-group">
                         <input type="text" id="cedula" name="cedula" required placeholder=" ">
                         <label for="cedula">Cédula</label>
@@ -57,6 +57,42 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init("NezWThM5ibDBDVYw7");
+        })();
+
+        document.getElementById('resetPasswordForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = {
+                cedula: document.getElementById('cedula').value,
+                asunto: document.getElementById('asunto').value,
+                mensaje: `Se ha solicitado el restablecimiento de contraseña para la cédula: ${document.getElementById('cedula').value}`
+            };
+
+            emailjs.send("service_n95yfgt", "template_8irbjgx", formData)
+                .then(function(response) {
+                    console.log('Mensaje enviado con éxito!', response.status, response.text);
+                    
+                    const successMessage = document.getElementById('successMessage');
+                    successMessage.classList.add('show');
+                    setTimeout(() => {
+                        successMessage.classList.remove('show');
+                    }, 5000);
+                }, function(error) {
+                    console.log('Error al enviar el mensaje:', error);
+                    alert("Hubo un problema al enviar el mensaje. Por favor, inténtelo de nuevo.");
+                });
+        });
+    </script>
+    <div id="successMessage" class="success-message">
+        <div class="success-content">
+            <i class="fas fa-check-circle"></i>
+            <h3>¡Mensaje enviado con éxito!</h3>
+            <p>Pronto se le enviará su nueva contraseña.</p>
+        </div>
+    </div>
 </body>
 </html> 
